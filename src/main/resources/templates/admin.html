@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin page</title>
+</head>
+<body>
+admin page..
+
+<form th:action="@{/chat}" th:method="GET">
+    <input type="submit" value="Back to chat">
+</form>
+
+
+<div th:each="user : ${users}">
+    <form th:action="${'/admin/blockchat/' + user.getId()}" th:method="POST">
+        <h4 th:text="${user.getUsername()}">Username</h4>
+        <label for="user" th:text="${user.getUsername() + ' is can chat: '}"></label>
+        <input type="submit" th:value="${user.isCanChat()}" id="user">
+    </form>
+</div>
+</body>
+</html>
